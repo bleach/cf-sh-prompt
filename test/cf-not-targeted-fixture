@@ -1,0 +1,4 @@
+                
+API endpoint:   https://api.foo.example.com (API version: 2.56.0)
+User:           person.name@example.com
+No org or space targeted, use 'cf target -o ORG -s SPACE'

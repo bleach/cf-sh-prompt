@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+basedir=$(dirname $0)
+
+# mock cf command
+cf() {
+	if [ "$1" = 'target' ];
+	then
+		cat ${basedir}/cf-target-fixture
+		return 0
+	else
+		echo 'command not mocked'
+		return 1
+	fi
+}
+
+assert_equal() {
+	if [ "$1" = "$2" ]
+	then
+		echo "${1} = ${2} [PASS]"
+	else
+		echo "Expected ${1} to be equal to ${2} [FAIL]"
+		exit 2
+	fi
+}
+
+. ${basedir}/../cf-sh-prompt
+
+assert_equal $(__cf_api_endpoint) 'https://api.foo.example.com' 
+assert_equal $(__cf_user) 'person.name@example.com'
+assert_equal $(__cf_org) 'exampleorg'
+assert_equal $(__cf_space) 'sandbox'
+
+

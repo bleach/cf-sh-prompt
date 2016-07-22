@@ -1,0 +1,16 @@
+#
+__cf_api_endpoint() {
+	cf target | awk '/^API endpoint:/ {print $3;}'
+}
+
+__cf_user() {
+	cf target | awk '/^User:/ {print $2;}'
+}
+
+__cf_org() {
+	cf target | awk '/^Org:/ {print $2;}'
+}
+
+__cf_space() {
+	cf target | awk '/^Space:/ {print $2;}'
+}
