@@ -1,4 +1,4 @@
-#
+#!/usr/bin/env bash 
 __cf_api_endpoint() {
 	cf target | awk '/^API endpoint:/ {print $3;}'
 }
